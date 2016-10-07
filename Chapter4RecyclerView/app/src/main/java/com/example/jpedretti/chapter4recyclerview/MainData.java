@@ -29,4 +29,15 @@ public class MainData {
                     "https://en.wikipedia.org/wiki/Hadrian%27s_Wall",
                     "https://en.wikipedia.org/wiki/Skara_Brae",
                     "https://en.wikipedia.org/wiki/Tower_of_London"};
+
+    static Integer[] hengeArray = {R.drawable.henge_large,
+            R.drawable.henge_2, R.drawable.henge_3,
+            R.drawable.henge_4};
+    static Integer[] horseArray = {};
+    static Integer[] wallArray = {R.drawable.wall_large,
+            R.drawable.wall_2};
+    static Integer[] skaraArray = {};
+    static Integer[] towerArray = {};
+    static Integer[][] galleryArray = {hengeArray, horseArray,
+            wallArray, skaraArray, towerArray};
 }
