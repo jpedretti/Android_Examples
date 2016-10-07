@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Chapetr Two - Fragments</string>
+    <string name="button_analog_text">Analog</string>
+    <string name="digital">Digital</string>
+</resources>
