@@ -93,7 +93,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 .setTicker("Wrap up warm!")
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(),
                         WeatherData.symbolArray[forecastIndex]));
+
+        NotificationCompat.BigPictureStyle bigStyle = getStyle();
+
+        builder.setStyle(bigStyle);
         return builder;
+    }
+
+    @NonNull
+    private NotificationCompat.BigPictureStyle getStyle() {
+        NotificationCompat.BigPictureStyle bigStyle = new NotificationCompat.BigPictureStyle();
+        bigStyle.bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.snow_scene));
+        return bigStyle;
     }
 
     private void setUpTabNavigation() {
