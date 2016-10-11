@@ -2,6 +2,7 @@ package com.example.jpedretti.weatherforecast;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -92,7 +93,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 .setAutoCancel(true)
                 .setTicker("Wrap up warm!")
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(),
-                        WeatherData.symbolArray[forecastIndex]));
+                        WeatherData.symbolArray[forecastIndex]))
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setVisibility(Notification.VISIBILITY_PUBLIC)
+                .setVibrate(new long[]{100,50,100,50,100})
+                .setCategory(Notification.CATEGORY_ALARM);
 
         NotificationCompat.BigPictureStyle bigStyle = getStyle();
 
