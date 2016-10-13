@@ -34,10 +34,27 @@
         android:text="se er se s srts ht sughsiu gisugf sopugf ispugf psufbbsçu fb suefb siufbsis rubdi ubdirgbdiurgb idrgbidubgr ipurbgwubpei urgbep irgb"
         android:layout_gravity="center_horizontal"
         android:textAppearance="?android:attr/textAppearanceSmall"/>
-    <ImageView
-        android:id="@+id/detail_web_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:src="@drawable/web_icon"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/camera"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/camera"/>
+        <ImageView
+            android:id="@+id/camera_save"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/camera_save"/>
+        <ImageView
+            android:id="@+id/detail_web_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/web_icon"/>
+    </RelativeLayout>
+
 </LinearLayout>
