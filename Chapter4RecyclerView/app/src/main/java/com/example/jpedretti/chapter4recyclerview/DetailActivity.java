@@ -43,15 +43,21 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == PREVIEW_REQUEST_CODE && resultCode == RESULT_OK){
+        if (requestCode == PREVIEW_REQUEST_CODE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             detailImage.setImageBitmap(imageBitmap);
-        } else if ( requestCode == SAVE_REQUEST_CODE && resultCode == RESULT_OK){
-            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        } else if (requestCode == SAVE_REQUEST_CODE && resultCode == RESULT_OK) {
+            /*
+            mediaDatabaseIntent is a request to the media scanner to add it to the media database
+            the next time it is run.
+            This means that our image will appear in the native gallery app and be available to
+            any other app that uses the media database, such as wallpaper pickers.
+             */
+            Intent mediaDatabaseIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
             Uri contentUri = Uri.fromFile(photoFile);
-            intent.setData(contentUri);
-            this.sendBroadcast(intent);
+            mediaDatabaseIntent.setData(contentUri);
+            this.sendBroadcast(mediaDatabaseIntent);
         }
     }
 
@@ -89,15 +95,15 @@ public class DetailActivity extends AppCompatActivity {
 
     private void takePhoto() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(takePictureIntent.resolveActivity(getPackageManager()) != null){
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             photoFile = null;
             try {
                 photoFile = fileName();
-            }catch (IOException ex){
+            } catch (IOException ex) {
                 Toast.makeText(this, "No SD Card.", Toast.LENGTH_SHORT).show();
             }
 
-            if(photoFile != null){
+            if (photoFile != null) {
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                         Uri.fromFile(photoFile));
                 startActivityForResult(takePictureIntent, SAVE_REQUEST_CODE);
@@ -105,7 +111,7 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    private File fileName() throws IOException{
+    private File fileName() throws IOException {
         String time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String file = MainData.nameArray[selectedItem] + "_" + time + "_";
         File directory = Environment
@@ -122,8 +128,8 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (intent.resolveActivity(getPackageManager()) != null){
-                    startActivityForResult(intent,PREVIEW_REQUEST_CODE);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(intent, PREVIEW_REQUEST_CODE);
                 }
             }
         });
