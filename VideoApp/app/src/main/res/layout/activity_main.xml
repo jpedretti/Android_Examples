@@ -10,8 +10,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.jpedretti.videoapp.MainActivity">
 
-    <VideoView
-        android:id="@+id/video_view"
+    <Button
+        android:id="@+id/rec_and_play_button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="@string/record_and_play_a_video"/>
+
+    <Button
+        android:id="@+id/play_in_app_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rec_and_play_button"
+        android:text="@string/play_a_in_app_video"/>
+
+    <Button
+        android:id="@+id/play_from_web_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/play_in_app_button"
+        android:text="@string/play_a_web_video"/>
 </RelativeLayout>

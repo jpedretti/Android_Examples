@@ -2,62 +2,47 @@ package com.example.jpedretti.videoapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.widget.MediaController;
-import android.widget.VideoView;
+import android.view.View;
+import android.widget.Button;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener{
 
-    private static final int VIDEO_REQUEST_CODE = 1;
-    private VideoView mVideoView;
-    private int mPosition = 0;
-    private MediaController mMediaController;
+    public static final int RECORD_AND_PLAY = 0;
+    public static final int PLAY_IN_APP_VIDEO = 1;
+    public static final int PLAY_FROM_WEB = 2;
+    public static final String ACTION_VALUE = "action_value";
+
+    private Button mRecAndPlayButton;
+    private Button mPlayInAppVideoButton;
+    private Button mPlayWebVideoButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mVideoView = (VideoView) findViewById(R.id.video_view);
+        mRecAndPlayButton = (Button) findViewById(R.id.rec_and_play_button);
+        mRecAndPlayButton.setOnClickListener(this);
 
-        if(mMediaController == null){
-            mMediaController = new MediaController(this);
-        }
+        mPlayInAppVideoButton = (Button) findViewById(R.id.play_in_app_button);
+        mPlayInAppVideoButton.setOnClickListener(this);
 
-        mVideoView.setMediaController(mMediaController);
+        mPlayWebVideoButton = (Button) findViewById(R.id.play_from_web_button);
+        mPlayWebVideoButton.setOnClickListener(this);
 
-        takeVideo();
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("Position", mVideoView.getCurrentPosition());
-        mVideoView.pause();
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        mPosition = savedInstanceState.getInt("Position");
-        mVideoView.seekTo(mPosition);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == VIDEO_REQUEST_CODE && resultCode == RESULT_OK) {
-            Uri videoUri = data.getData();
-            mVideoView.setVideoURI(videoUri);
+    public void onClick(View v) {
+        Intent intent = new Intent(getApplicationContext(), VideoActivity.class);
+        if(v == mRecAndPlayButton){
+            intent.putExtra(ACTION_VALUE, RECORD_AND_PLAY);
+        } else if (v == mPlayInAppVideoButton){
+            intent.putExtra(ACTION_VALUE, PLAY_IN_APP_VIDEO);
+        } else if (v == mPlayWebVideoButton){
+            intent.putExtra(ACTION_VALUE, PLAY_FROM_WEB);
         }
-    }
-
-    private void takeVideo() {
-        Intent takeVideoIntent =  new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-
-        if(takeVideoIntent.resolveActivity(getPackageManager()) != null){
-            startActivityForResult(takeVideoIntent, VIDEO_REQUEST_CODE);
-        }
+        startActivity(intent);
     }
 }

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Video App</string>
+    <string name="record_and_play_a_video">Record and Play a Video</string>
+    <string name="play_a_in_app_video">Play a in-app Video</string>
+    <string name="play_a_web_video">Play a web Video</string>
 </resources>
