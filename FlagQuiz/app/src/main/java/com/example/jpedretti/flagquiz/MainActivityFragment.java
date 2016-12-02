@@ -266,7 +266,7 @@ public class MainActivityFragment extends Fragment {
 
             if (guess.equals(answer)) {
                 ++correctAnswers;
-                answerTextView.setText(getString(R.string.answer_text_view_correct_answer_text));
+                answerTextView.setText(getString(R.string.answer_text_view_correct_answer_text, getCountryName(correctAnswer)));
                 answerTextView.setTextColor(getResources().getColor(R.color.correct_answer,
                         getContext().getTheme()));
 

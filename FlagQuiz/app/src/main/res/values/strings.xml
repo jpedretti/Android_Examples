@@ -13,7 +13,7 @@
     <string name="North"> America as the default region.</string>
     <string name="restarting_quiz"> Quiz will restart with your new settings</string>
     <string name="question"> Question %1$d of %2$d</string>
-    <string name="answer_text_view_correct_answer_text">%1$s !</string>
+    <string name="answer_text_view_correct_answer_text">%1$s!</string>
     <string name="reset_quiz"> Reset Quiz</string>
     <string name="image_description"> Image of the current flag in the quiz</string>
     <string name="default_region"> North_America</string>
