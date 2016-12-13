@@ -8,6 +8,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -114,7 +115,6 @@ public class MainActivityFragment extends Fragment {
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     doodleView.printImage();
                 }
-                return;
         }
     }
 
@@ -186,7 +186,8 @@ public class MainActivityFragment extends Fragment {
 
         // checks if the app does not have permission needed
         // to save the image
-        if(getContext().checkSelfPermission(
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && getContext().checkSelfPermission(
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
                 PackageManager.PERMISSION_GRANTED) {
 
